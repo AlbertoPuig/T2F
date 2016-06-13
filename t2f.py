@@ -9,14 +9,20 @@ def prepare(boardname, verbose):
 	else:
 		log.set_infolevel()
 	
-	log.info_msg("TEST INFO")
+	log.info_msg("RUNNING PROCESS")
 	log.debug_msg("DEBUG_INFO")
 	trello = TrelloConn(log)
+	log.debug_msg("Connecting to Trello")
 	trello.set_board(boardname)
 	id_board = trello.get_trello_board()
+	log.debug_msg("Getting board data")
 	trello.set_board_id(id_board)
-	trello.create_features()	
-	
+	log.debug_msg("Creating feature files")
+	trello.create_features()
+	log.debug_msg("_______________________________")	
+	log.debug_msg("Process completed successfully")	
+	log.debug_msg("_______________________________")
+
 def usage():
 	print"====================================================================="
 	print "Make features files (BDD - Gherkin) from Trello User_Stories\n"

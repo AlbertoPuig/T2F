@@ -4,6 +4,7 @@ import feature_maker
 from ConfigParser import SafeConfigParser
 from user_story import UserStory
 
+
 try:
     from urlparse import urlparse
 except ImportError:
@@ -32,7 +33,7 @@ class TrelloConn(object):
 		self.__card_id = ''
 		self.__checklist_id = ''
 		self.__checklistdetails = ''
-		log.debug_msg("DEBUG FROM TrelloConn")
+		log.debug_msg("Connected Trello API")
 
 	def set_user(self, user):
 		self.__user = user
@@ -100,6 +101,7 @@ class TrelloConn(object):
 		if uri == "checklistsdetails":
 			uri = "https://api.trello.com/1/checklists/" + self.get_checklistdetails() + "?fields=name&cards=all&card_fields=name&key=" + self.__key + "&token=" + self.__token
 
+
 		path = ''
 		target = urlparse(uri+path)
 		method = 'GET'
@@ -147,9 +149,9 @@ class TrelloConn(object):
 		data2 = self.connector("infocards")
 		userstory = UserStory()
 
-		print "Card id: " + data2["id"]
+		'''print "Card id: " + data2["id"]
 		print "Card Name: " + data2["name"]
-		print "Card Desc: " + data2["desc"]
+		print "Card Desc: " + data2["desc"]'''
 
 		#get checklist of card
 		
@@ -159,24 +161,24 @@ class TrelloConn(object):
 		data3 = self.connector("infochecklists")
 
 		for item in data3:
-			print item.get("name")
+			#print item.get("name")
 			dic_key = item.get("name")
 			self.trello_get_checklist_details(item.get("id"),dic_key,userstory)
 
 		userstory.set_name(data2["name"])
 		userstory.set_desc(data2["desc"])
 		#userstory.add_checklist_name(item.get("name"))
-		print "___________________________________________________________"
+		'''print "___________________________________________________________"
 
 		print "Contenido del objeto userstory"
 		print "Name: " + userstory.get_name()
 		print "Desc: " + userstory.get_desc()
 		#check_dic = userstory.get_check()
-		print "Check: " + str(userstory.get_check())
+		print "Check: " + str(userstory.get_check())'''
 
 		feature_maker.prepare(userstory)
 
-		print "___________________________________________________________"
+		#print "___________________________________________________________"
 		
 		#get checklist details
 	def trello_get_checklist_details(self,checklistid, dic_key, userstory):
@@ -185,13 +187,11 @@ class TrelloConn(object):
 		self.set_checklistdetails(checklistid)
 		#print self.get_checklistdetails()
 		data4 = self.connector("checklistsdetails")
-		print "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+		#print "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
 		list_checkitems = []
 		for item in data4["checkItems"]:
-			print "Item Name: " + item.get("name")
+			#print "Item Name: " + item.get("name")
 			#userstory.add_checkitem_name(item.get("name"))
 			list_checkitems.append(item.get("name"))
-		print "dic_ket value: " + dic_key
-		print "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
-		print "FIN FIN"
-		userstory.add_check(dic_key, list_checkitems)S
+		#print "dic_ket value: " + dic_key
+		userstory.add_check(dic_key, list_checkitems)

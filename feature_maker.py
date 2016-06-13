@@ -4,6 +4,7 @@ import errno
 from ConfigParser import SafeConfigParser
 #from os.path import expanduser
 from user_story import UserStory
+from logger import  Logger
 
 #class FeatureMaker(object):
 
@@ -19,12 +20,14 @@ def prepare(userstory):
 	when = parser.get('gherkin_conf', 'when')
 	then = parser.get('gherkin_conf', 'then')
 
+	log = Logger()
+
 
 	if len(userstory.get_name()) > 25:
 		filename = userstory.get_name()[:25]
 	else:
 		filename = userstory.get_name()
-
+	log.debug_msg("Writing file: " + filename)	
 	filename = filename.replace(" " ,"_")
 	dicc = userstory.get_check()
 	#list_items = list(userstory.get_check().keys())
@@ -44,12 +47,12 @@ def prepare(userstory):
 
 	file.close()
 
-	print".................................................."
+	'''print".................................................."
 	print userstory.get_name()
 	print userstory.get_desc()
 	print userstory.get_check()
 	print "Filename: " + filename
-	print".................................................."
+	print".................................................."'''
 
 
 if __name__ == '__main__':
