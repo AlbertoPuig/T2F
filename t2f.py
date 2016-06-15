@@ -21,6 +21,7 @@ def prepare(boardname, verbose):
 	trello.create_features()
 	log.debug_msg("_______________________________")	
 	log.debug_msg("Process completed successfully")	
+	log.info_msg("Process completed successfully")	
 	log.debug_msg("_______________________________")
 
 def usage():

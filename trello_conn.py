@@ -148,14 +148,8 @@ class TrelloConn(object):
 		self.set_card_id(card_id)
 		data2 = self.connector("infocards")
 		userstory = UserStory()
-
-		'''print "Card id: " + data2["id"]
-		print "Card Name: " + data2["name"]
-		print "Card Desc: " + data2["desc"]'''
-
 		#get checklist of card
 		
-		#print "4. Info of Checklist"
 		self.set_checklist_id(data2["id"])
 		
 		data3 = self.connector("infochecklists")
@@ -167,31 +161,15 @@ class TrelloConn(object):
 
 		userstory.set_name(data2["name"])
 		userstory.set_desc(data2["desc"])
-		#userstory.add_checklist_name(item.get("name"))
-		'''print "___________________________________________________________"
-
-		print "Contenido del objeto userstory"
-		print "Name: " + userstory.get_name()
-		print "Desc: " + userstory.get_desc()
-		#check_dic = userstory.get_check()
-		print "Check: " + str(userstory.get_check())'''
-
+		
 		feature_maker.prepare(userstory)
 
-		#print "___________________________________________________________"
-		
 		#get checklist details
 	def trello_get_checklist_details(self,checklistid, dic_key, userstory):
-		#print "5. Checklist details"
 
 		self.set_checklistdetails(checklistid)
-		#print self.get_checklistdetails()
 		data4 = self.connector("checklistsdetails")
-		#print "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
 		list_checkitems = []
 		for item in data4["checkItems"]:
-			#print "Item Name: " + item.get("name")
-			#userstory.add_checkitem_name(item.get("name"))
 			list_checkitems.append(item.get("name"))
-		#print "dic_ket value: " + dic_key
 		userstory.add_check(dic_key, list_checkitems)

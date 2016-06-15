@@ -21,7 +21,7 @@ def prepare(userstory):
 	then = parser.get('gherkin_conf', 'then')
 
 	log = Logger()
-
+	log.debug_msg("Getting config")
 
 	if len(userstory.get_name()) > 25:
 		filename = userstory.get_name()[:25]
@@ -46,6 +46,7 @@ def prepare(userstory):
 			file.write(then +  ' ' + " \n")
 
 	file.close()
+	log.debug_msg("File created successfully")
 
 	'''print".................................................."
 	print userstory.get_name()
