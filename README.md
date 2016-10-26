@@ -19,11 +19,11 @@ File_name = conf.ini
 <br>
 url = https://api.trello.com/1/members/
 <br>
-username = <your_Trello_user_name>
+username = your_Trello_user_name
 <br>
-key = <your_Trello_key>
+key = your_Trello_key
 <br>
-token = <your_Trello_token>
+token = your_Trello_token
 <br>
 [gherkin_conf]
 <br>
