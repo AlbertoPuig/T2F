@@ -6,13 +6,16 @@ Trello API REST. Gherkin language
 <br>
 - Command Line in verbose mode
 <br>
+<br>
 <img src="/img/Command_line.png">
 <br>
 - Feature File Example
 <br>
+<br>
 <img src="/img/feature_file_example.png">
 <br>
 - Properties File template
+<br>
 File_name = conf.ini
 <br>
 [trello_conf]
@@ -33,7 +36,7 @@ feature = Feature:
 <br>
 scenario = Scenario:
 <br>
-given = Given  
+given = Given
 <br>
 other = and 
 <br>
